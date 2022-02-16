@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.itsfiveoclocksomewhere.ui.login.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user touches the button */
     public void sendMessage(View view) {
-        /**Intent intent = new Intent(FromActivity.this, ToActivity.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
 
