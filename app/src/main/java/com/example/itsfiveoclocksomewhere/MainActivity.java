@@ -17,8 +17,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /** Called when the user touches the button */
-    public void sendMessage(View view) {
+    public void sendMessageLogin(View view) {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void sendMessageMap(View view) {
+        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
         startActivity(intent);
     }
 
