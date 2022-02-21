@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "466302702447",
+    "project_id": "happy-hunting-341517",
+    "storage_bucket": "happy-hunting-341517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466302702447:android:bb7a2c3129d8ad34fe4e9a",
+        "android_client_info": {
+          "package_name": "com.example.itsfiveoclocksomewhere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466302702447-r5sehtnkahinjpr0jo5gvnjeg1t022iv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb4cWnsJ_rRdZnL30MiDNpfnsUltjj64Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466302702447-r5sehtnkahinjpr0jo5gvnjeg1t022iv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
