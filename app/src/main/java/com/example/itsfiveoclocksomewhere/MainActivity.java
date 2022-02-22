@@ -8,12 +8,35 @@ import android.view.View;
 
 import com.example.itsfiveoclocksomewhere.ui.login.LoginActivity;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(BuildConfig.DEBUG){
+            Timber.plant(new Timber.DebugTree());
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Timber.d("Main activity onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Timber.d("Main activity onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Timber.d("Main activity onStop");
     }
 
     /** Called when the user touches the button */
