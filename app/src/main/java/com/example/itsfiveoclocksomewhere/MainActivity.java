@@ -17,8 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(BuildConfig.DEBUG){
-            Timber.plant(new Timber.DebugTree());
+           Timber.plant(new Timber.DebugTree());
         }
+        Timber.d("Main activity onCreate");
     }
 
     @Override
@@ -32,13 +33,22 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Timber.d("Main activity onResume");
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Timber.d("Main activity onPause");
+    }
 
     @Override
     protected void onStop() {
         super.onStop();
         Timber.d("Main activity onStop");
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Timber.d("Main activity onDestroy");
+    }
     /** Called when the user touches the button */
     public void sendMessageLogin(View view) {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -49,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MapsActivity.class);
         startActivity(intent);
     }
+
 
 
 }

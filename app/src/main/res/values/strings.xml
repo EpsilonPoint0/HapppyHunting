@@ -14,4 +14,6 @@
     <string name="welcome_to_happy_hunting_start_by_clicking_the_button_below_to_create_your_account">Welcome to Happy Hunting! Start by clicking the button below to create your account.</string>
     <string name="create_account">Create Account</string>
     <string name="go_to_map">Go To Map</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
