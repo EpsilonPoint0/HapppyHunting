@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
+import com.example.itsfiveoclocksomewhere.DBHelperUser;
 import com.example.itsfiveoclocksomewhere.data.LoginRepository;
 import com.example.itsfiveoclocksomewhere.data.Result;
 import com.example.itsfiveoclocksomewhere.data.model.LoggedInUser;
@@ -36,6 +37,7 @@ public class LoginViewModel extends ViewModel {
         if (result instanceof Result.Success) {
             LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
             loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
