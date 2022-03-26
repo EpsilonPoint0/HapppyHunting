@@ -41,8 +41,6 @@ public class DBMethods {
     }
 
     /**
-     * @author Leon Madrid
-     *
      * Queries the database and prints the results.
      *
      * @param conn 			a connection object
@@ -52,7 +50,7 @@ public class DBMethods {
      * This query is written with the Statement class, typically
      * used for static SQL SELECT statements
      */
-    public static void sqlGet(Connection conn, String sql, String ifNone){
+    public static void readFromDB(Connection conn, String sql, String ifNone){
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -87,12 +85,12 @@ public class DBMethods {
     }
 
     /**
-     * Inserts or updates database information
+     * Inserts, updates, or deletes database information
      *
      * @param conn		connection to database
      * @param sql		sql statement to execute
      */
-    public static void sqlSet(Connection conn, String sql) {
+    public static void writeToDB(Connection conn, String sql) {
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.execute();
