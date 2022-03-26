@@ -19,6 +19,8 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity {
     DBHelperUser DBUser;
     Button ReadUserButton;
+    static final String DB_Name = "HappyHunting.db";		//name of the database
+    Connection conn;                                        //connection to database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
         }
+        conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
     }
 
     @Override
