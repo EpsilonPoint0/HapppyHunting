@@ -14,12 +14,14 @@ import com.uber.sdk.android.core.UberSdk;
 import com.uber.sdk.core.auth.Scope;
 import com.uber.sdk.rides.client.SessionConfiguration;
 
+import java.sql.Connection;
+
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
     DBHelperUser DBUser;
     Button ReadUserButton;
-    static final String DB_Name = "HappyHunting.db";		//name of the database
+    static final String DB_Name = "24.214.214.220:3306/happyhunting";		//name of the database
     Connection conn;                                        //connection to database
 
     @Override
@@ -43,15 +45,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
-                DBUser = new DBHelperUser(MainActivity.this);
-                DBUser.getData(2);
+                //DBUser = new DBHelperUser(MainActivity.this);
+                //DBUser.getData(2);
+                conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
+                DBMethods.readFromDB(conn, "Select * from User where User_ID = 2", "error");
                 Timber.d("Successfully inserted user");
             }
         });
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
         }
-        conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
+        //conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
     }
 
     @Override

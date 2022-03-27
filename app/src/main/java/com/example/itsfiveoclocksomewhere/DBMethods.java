@@ -19,11 +19,15 @@ public class DBMethods {
          * "jdbc:sqlite:" is the "subprotocol".
          * (If this were a SQL Server database it would be "jdbc:sqlserver:".)
          */
-        String url = "jdbc:sqlite:" + databaseFileName;
+
         Connection conn = null; // If you create this variable inside the Try block it will be out of scope
 
         //TODO: update display messages
         try {
+
+            String url = "jdbc:sqlite://" + databaseFileName;
+            String user = "root";
+            String password = "root";
             conn = DriverManager.getConnection(url);
             if (conn != null) {
                 // Provides some positive assurance the connection and/or creation was successful.
@@ -45,7 +49,7 @@ public class DBMethods {
      *
      * @param conn 			a connection object
      * @param sql 			a SQL statement that returns rows
-     * @param ifnone		helper for message if nothing is found
+     * @param ifNone		helper for message if nothing is found
      *
      * This query is written with the Statement class, typically
      * used for static SQL SELECT statements
