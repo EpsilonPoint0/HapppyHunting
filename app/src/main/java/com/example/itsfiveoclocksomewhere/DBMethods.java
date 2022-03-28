@@ -3,7 +3,6 @@ package com.example.itsfiveoclocksomewhere;
 import java.sql.*;
 import java.util.ArrayList;
 
-
 public class DBMethods {
 
     /**
@@ -97,6 +96,53 @@ public class DBMethods {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Checks if a specified query returns anything, and gets the first value
+     *
+     * @param conn			connection to database
+     * @param sql			sql query to execute
+     *
+     * @return				0 if nothing exists, the first value if it exists
+     */
+    public static int checkExistsAndFirstValue(Connection conn, String sql) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            //if the query exists, gets first item
+            if (rs.isBeforeFirst()) {
+                return Integer.parseInt(rs.getString(1));
+
+                //if not, returns 0
+            } else {
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    /**
+     * Finds the number of rows in a table to create a creator id.
+     *
+     * @param conn			connection to database
+     * @param fromWhere		table to find rows of
+     *
+     * @return number of rows in the table
+     */
+    public static int getRows(Connection conn, String fromWhere){
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT count(rowid) FROM " + fromWhere + ";");
+            ResultSet rs = stmt.executeQuery();
+            return Integer.parseInt(rs.getString(1));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
     }
 
 }

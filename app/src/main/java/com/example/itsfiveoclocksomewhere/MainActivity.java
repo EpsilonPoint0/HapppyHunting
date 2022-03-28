@@ -15,12 +15,13 @@ import com.uber.sdk.core.auth.Scope;
 import com.uber.sdk.rides.client.SessionConfiguration;
 
 import timber.log.Timber;
+import java.sql.*;
 
 public class MainActivity extends AppCompatActivity {
     DBHelperUser DBUser;
     Button ReadUserButton;
-    static final String DB_Name = "HappyHunting.db";		//name of the database
-    Connection conn;                                        //connection to database
+    static final String DB_Name = "HappyHunting.db";		            //name of the database
+    public static Connection conn;                                        //connection to database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
