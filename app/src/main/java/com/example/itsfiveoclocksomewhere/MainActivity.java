@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.itsfiveoclocksomewhere.ui.login.LoginActivity;
 import com.uber.sdk.android.core.UberSdk;
-import com.uber.sdk.core.auth.Scope;
 import com.uber.sdk.rides.client.SessionConfiguration;
 
 import timber.log.Timber;
@@ -20,7 +19,7 @@ import java.sql.*;
 public class MainActivity extends AppCompatActivity {
     DBHelperUser DBUser;
     Button ReadUserButton;
-    static final String DB_Name = "HappyHunting.db";		            //name of the database
+    static final String DB_Name = "data/HappyHunting1.db";		          //name of the database
     public static Connection conn;                                        //connection to database
 
     @Override

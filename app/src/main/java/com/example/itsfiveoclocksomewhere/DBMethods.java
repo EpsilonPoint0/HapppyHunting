@@ -34,7 +34,7 @@ public class DBMethods {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("There was a problem connecting to the database.");
-            System.exit(1);
+//            System.exit(1);
         }
         return conn;
     }
