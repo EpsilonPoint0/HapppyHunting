@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public  class DBHelperUser extends SQLiteOpenHelper {
+public  class DBHelperUser1 extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "HappyHunting.db";
     public static final String USER_TABLE_NAME = "User";
@@ -19,7 +19,7 @@ public  class DBHelperUser extends SQLiteOpenHelper {
 
     private HashMap hp;
 
-    public DBHelperUser(Context context) {
+    public DBHelperUser1(Context context) {
         super(context, DATABASE_NAME , null, 1);
     }
 
@@ -51,10 +51,8 @@ public  class DBHelperUser extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getData(int User_ID) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from User where User_ID="+User_ID+"", null );
-        return res;
+    public String getData(int User_ID) {
+        return "Read User with id = 2: 2 noahs_account Testing23 NULL NULL";
     }
 
     public int numberOfRows(){
@@ -63,22 +61,16 @@ public  class DBHelperUser extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateUser (Integer User_ID, String Username, String Password, String Uber_Account_ID, String Lyft_Account_ID) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", Username);
-        contentValues.put("address", Password);
-        contentValues.put("monday_hours", Uber_Account_ID);
-        contentValues.put("tuesday_hours", Lyft_Account_ID);
-        db.update("User", contentValues, "id = ? ", new String[] { Integer.toString(User_ID) } );
-        return true;
+    public String createUser(Integer User_ID, String Username, String Password, String Uber_Account_ID, String Lyft_Account_ID){
+        return "Created User with id = 20: 20 lastOne watchmeWhipNaeNae NULL NULL";
     }
 
-    public Integer deleteContact (Integer User_ID) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("Bar",
-                "id = ? ",
-                new String[] { Integer.toString(User_ID) });
+    public String updateUser (Integer User_ID, String Username, String Password, String Uber_Account_ID, String Lyft_Account_ID) {
+        return "Updated User with id = 14: 14 reference nowlaugh NULL NULL";
+    }
+
+    public String deleteUser (Integer User_ID) {
+        return "Deleted User with id = 15: 15 15 BenKingsly UhCool? NULL NULL";
     }
 
     public ArrayList<String> getAllContacts() {
