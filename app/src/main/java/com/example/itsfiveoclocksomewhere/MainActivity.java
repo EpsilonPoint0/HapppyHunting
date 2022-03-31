@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.example.itsfiveoclocksomewhere.ui.login.LoginActivity;
 import com.uber.sdk.android.core.UberSdk;
@@ -19,6 +20,7 @@ import timber.log.Timber;
 public class MainActivity extends AppCompatActivity {
     DBHelperUser DBUser;
     Button ReadUserButton;
+    AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,16 @@ public class MainActivity extends AppCompatActivity {
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
         }
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "database-name").allowMainThreadQueries().build();
+        BarDao bar = db.barDao();
+        DBMethods.populateBar(bar);
+        UserDao user = db.userDao();
+        DBMethods.populateUsers(user);
+        SpecialDao special = db.specialDao();
+        DBMethods.populateSpecials(special);
+        DBMethods.testWorks(db);
+        System.out.println("Horray! We Win!");
     }
 
     @Override
