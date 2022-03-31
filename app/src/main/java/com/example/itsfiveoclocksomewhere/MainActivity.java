@@ -13,13 +13,14 @@ import com.example.itsfiveoclocksomewhere.ui.login.LoginActivity;
 import com.uber.sdk.android.core.UberSdk;
 import com.uber.sdk.core.auth.Scope;
 import com.uber.sdk.rides.client.SessionConfiguration;
+import java.sql.Connection;
 
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
     DBHelperUser DBUser;
     Button ReadUserButton;
-    static final String DB_Name = "HappyHunting.db";		//name of the database
+    static final String DB_Name = "HappyHunting";		//name of the database
     Connection conn;                                        //connection to database
 
     @Override
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
         }
-        conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
+        //conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.example.itsfiveoclocksomewhere;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+import timber.log.Timber;
 
 public class DBMethods {
 
@@ -19,12 +19,16 @@ public class DBMethods {
          * "jdbc:sqlite:" is the "subprotocol".
          * (If this were a SQL Server database it would be "jdbc:sqlserver:".)
          */
+
+
         String url = "jdbc:sqlite:" + databaseFileName;
         Connection conn = null; // If you create this variable inside the Try block it will be out of scope
 
         //TODO: update display messages
         try {
+            Timber.d("Successfully reached here :)");
             conn = DriverManager.getConnection(url);
+
             if (conn != null) {
                 // Provides some positive assurance the connection and/or creation was successful.
                 System.out.println("The connection to the database was successful. Beginning program:");

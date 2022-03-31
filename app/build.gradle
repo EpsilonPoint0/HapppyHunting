@@ -3,6 +3,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+
 }
 
 android {
@@ -45,7 +46,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'com.uber.sdk:rides-android:0.5.3'
+    implementation files('libs\\sqlite-jdbc-3.36.0.3.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+   // implementation 'org.xerial:sqlite-jdbc:3.36.0.3'
+
+
 }
