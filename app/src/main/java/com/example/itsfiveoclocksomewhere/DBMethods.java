@@ -122,55 +122,55 @@ public class DBMethods {
     }
 
     public static void populateSpecials(SpecialDao db) {
-        Special one = new Special(1, 0, 0, 1, 7,
-                "16oz budweiser: $3|PBR tallboy: $3|16oz platform - haze jude: $4|paper tiger draft: $3|bomb special");
-        Special two = new Special(1, 15, 2, 2, 2,
+//        Special one = new Special(1, 0, 0, 1, 7,
+//                "16oz budweiser: $3|PBR tallboy: $3|16oz platform - haze jude: $4|paper tiger draft: $3|bomb special");
+        Special two = new Special(1, 1, 15, 2, 2, 2,
                 "half off all drinks");
-        Special three = new Special(1, 15, 19, 3, 7,
+        Special three = new Special(2, 1, 15, 19, 3, 7,
                 "$2 off all drinks");
-        Special four = new Special(1, 15, 2, 3, 3,
+        Special four = new Special(3, 1, 15, 2, 3, 3,
                 "16oz half off pink whitney");
-        Special five = new Special(1, 15, 19, 2, 5,
+        Special five = new Special(4, 1, 15, 19, 2, 5,
                 "half off all apps");
-        Special six = new Special(2, 21, 2, 1, 1,
+        Special six = new Special(5, 2, 21, 2, 1, 1,
                 "$2 Wells|$3 Hot Shots|$4 Any Draft|$5 32oz OG LIT Pitchers");
-        Special seven = new Special(2, 17, 22, 2, 2,
+        Special seven = new Special(6, 2, 17, 22, 2, 2,
                 "$2 CHZBURGERS");
-        Special eight = new Special(2, 21, 2, 2, 2,
+        Special eight = new Special(7, 2, 21, 2, 2, 2,
                 "$3 Wells|$3 Hot Shots|$3 Domestic Bottles");
-        Special nine = new Special(2, 21, 2, 3, 3,
+        Special nine = new Special(8, 2, 21, 2, 3, 3,
                 "40¢ Wings|$4 Double Wells|$5 Large Domestic Drafts|$6 Large Craft Drafts");
-        Special ten = new Special(2, 21, 2, 4, 4,
+        Special ten = new Special(9, 2, 21, 2, 4, 4,
                 "$2 Double Wells|$3 Domestic Bottles|$3 Cherry or Grape Bombs|$4 32oz. OG LIT Pitchers");
-        Special eleven = new Special(2, 21, 2, 5, 5,
+        Special eleven = new Special(10, 2, 21, 2, 5, 5,
                 "$3 Double Wells|$3 Tito's|$4 Domestic Bottles|$8 32oz. OG LIT Pitchers");
-        Special twelve = new Special(2, 21, 2, 6, 6,
+        Special twelve = new Special(11, 2, 21, 2, 6, 6,
                 "$4 Fireball|$4 Cherry/Grape Bombs|$6 Vodka Red Bulls|$6 Vegas Bombs");
-        Special thirteen = new Special(2, 21, 2, 7, 7,
+        Special thirteen = new Special(12, 2, 21, 2, 7, 7,
                 "$2 Mimosas|$4 Double Wells|$4 Calls|$4 Large Domestic Drafts|$5 Large Craft/Import Drafts");
-        Special fourteen = new Special(3, 21, 2, 3, 3,
+        Special fourteen = new Special(13, 3, 21, 2, 3, 3,
                 "$5 DOUBLE REDBULL VODKA|$3 PINK WHITNEYS");
-        Special fifteen = new Special(3, 20, 2, 4, 4,
+        Special fifteen = new Special(14, 3, 20, 2, 4, 4,
                 "$1 WELLS FOR THE LADIES|$2 PINK TEA|$2 TITOS|$5 MIDWAY MILK");
-        Special sixteen = new Special(3, 15, 18, 5, 6,
+        Special sixteen = new Special(15, 3, 15, 18, 5, 6,
                 "$1 wells|$1 bombs");
-        Special seventeen = new Special(3, 18, 21, 5, 6,
+        Special seventeen = new Special(16, 3, 18, 21, 5, 6,
                 "$2 off everything");
-        Special eighteen = new Special(4, 12, 16, 2, 4,
+        Special eighteen = new Special(17, 4, 12, 16, 2, 4,
                 "50% off drafts|25% off Handhelds");
-        Special nineteen = new Special(4, 16, 19, 2, 4,
+        Special nineteen = new Special(18, 4, 16, 19, 2, 4,
                 "50% off wells|50% off drafts|25% off Specialty Cocktails");
-        Special twenty = new Special(4, 12, 2, 2, 2,
+        Special twenty = new Special(19, 14, 12, 2, 2, 2,
                 "$1 tacos|$5 frozen margarita|$10 margarita pitchers");
-        Special twentyone = new Special(4, 12, 2, 3, 3,
+        Special twentyone = new Special(20, 4, 12, 2, 3, 3,
                 "25% off appetizers|25% off shareable cocktails");
-        Special twentytwo = new Special(4, 12, 2, 4, 4,
+        Special twentytwo = new Special(21, 4, 12, 2, 4, 4,
                 "$5 nachos|$5 big tanks");
-        Special twentythree = new Special(4, 12, 17, 5, 5,
+        Special twentythree = new Special(22,4, 12, 17, 5, 5,
                 "DOMESTIC PITCHERS: $2 @ 12:00, $3 @ 1:00 $4 @ 2:00, $5 @ 3:00 $6 @ 4:00");
-        Special twentyfour = new Special(4, 18, 21, 5, 6,
+        Special twentyfour = new Special(23, 4, 18, 21, 5, 6,
                 "$20 bottomless mimosas|$4 irish breakfast shots");
-        db.insertAllSpecials(one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve,
+        db.insertAllSpecials(two, three, four, five, six, seven, eight, nine, ten, eleven, twelve,
                 thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twentyone,
                 twentytwo, twentythree, twentyfour);
     }

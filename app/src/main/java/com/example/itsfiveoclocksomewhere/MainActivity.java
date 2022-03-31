@@ -52,15 +52,7 @@ public class MainActivity extends AppCompatActivity {
             Timber.plant(new Timber.DebugTree());
         }
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").allowMainThreadQueries().build();
-        BarDao bar = db.barDao();
-        DBMethods.populateBar(bar);
-        UserDao user = db.userDao();
-        DBMethods.populateUsers(user);
-        SpecialDao special = db.specialDao();
-        DBMethods.populateSpecials(special);
-        DBMethods.testWorks(db);
-        System.out.println("Horray! We Win!");
+                AppDatabase.class, "OurDB").allowMainThreadQueries().build();
     }
 
     @Override

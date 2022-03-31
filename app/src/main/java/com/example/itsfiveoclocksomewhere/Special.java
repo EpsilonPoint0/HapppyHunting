@@ -28,7 +28,8 @@ public class Special {
     @ColumnInfo(name = "Special Information")
     public String specialInfo;
 
-    public Special(int location, double startTime, double endTime, double startDay, double endDay, String specialInfo) {
+    public Special(int specialId, int location, double startTime, double endTime, double startDay, double endDay, String specialInfo) {
+        this.specialId = specialId;
         this.location = location;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -40,7 +41,8 @@ public class Special {
     @Override
     public String toString() {
         return "Special{" +
-                "location=" + location +
+                "specialId=" + specialId +
+                ", location=" + location +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", startDay=" + startDay +
