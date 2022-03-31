@@ -20,85 +20,17 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button ReadUserButton;
-    Button CreateUserButton;
-    Button DeleteUserButton;
-    Button UpdateUserButton;
-    static final String DB_Name = "jdbc:sqlite//happyhunting";		//name of the database
-    Connection conn;                                        //connection to database
+                        //connection to database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SessionConfiguration config = new SessionConfiguration.Builder()
-                // mandatory
-                .setClientId("<CLIENT_ID>")
-                // required for enhanced button features
-                .setServerToken("<TOKEN>")
-                // required for implicit grant authentication
-                .setRedirectUri("<REDIRECT_URI>")
-                // optional: set sandbox as operating environment
-                .setEnvironment(SessionConfiguration.Environment.SANDBOX)
-                .build();
-        UberSdk.initialize(config);
 
-        ReadUserButton = (Button)findViewById(R.id.button3);
-        ReadUserButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                //DBUser = new DBHelperUser(MainActivity.this);
-                Toast.makeText(MainActivity.this, "Connection to database successful", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(MainActivity.this, "Read User with id = 2: 2 noahs_account Testing23 NULL NULL", Toast.LENGTH_SHORT).show();
 
-                Timber.d("Successfully read user");
-            }
-        });
 
-        CreateUserButton = (Button)findViewById(R.id.button5);
-        CreateUserButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //DBUser = new DBHelperUser(MainActivity.this);
-                Toast.makeText(MainActivity.this, "Connection to database successful", Toast.LENGTH_SHORT).show();
-                //DBUser.getData(2);
-
-                Toast.makeText(MainActivity.this, "Created User with id = 20: 20 lastOne watchmeWhipNaeNae NULL NULL", Toast.LENGTH_SHORT).show();
-                Timber.d("Successfully created user");
-            }
-        });
-
-        DeleteUserButton = (Button)findViewById(R.id.button4);
-        DeleteUserButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //DBUser = new DBHelperUser(MainActivity.this);
-                Toast.makeText(MainActivity.this, "Connection to database successful", Toast.LENGTH_SHORT).show();
-                //DBUser.getData(2);
-
-                Toast.makeText(MainActivity.this, "Deleted User with id = 15: 15 15 BenKingsly UhCool? NULL NULL", Toast.LENGTH_SHORT).show();
-                Timber.d("Successfully deleted user");
-            }
-        });
-
-        UpdateUserButton = (Button)findViewById(R.id.button6);
-        UpdateUserButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                //conn = DBMethods.initializeDB(DB_Name); //creating a connection to the database
-                Toast.makeText(MainActivity.this, "Connection to database successful", Toast.LENGTH_SHORT).show();
-                //DBMethods.readFromDB(conn, "Select * from User where User_ID = 2", "error");
-
-                Toast.makeText(MainActivity.this, "Updated User with id = 14: 14 reference nowlaugh NULL NULL", Toast.LENGTH_SHORT).show();
-                Timber.d("Successfully Updated user");
-            }
-        });
 
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());

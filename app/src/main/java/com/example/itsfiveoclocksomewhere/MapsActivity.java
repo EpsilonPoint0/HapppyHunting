@@ -11,6 +11,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.itsfiveoclocksomewhere.databinding.ActivityMapsBinding;
+import com.uber.sdk.android.core.UberSdk;
+import com.uber.sdk.rides.client.SessionConfiguration;
 
 import timber.log.Timber;
 
@@ -30,6 +32,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        SessionConfiguration config = new SessionConfiguration.Builder()
+                // mandatory
+                .setClientId("<CLIENT_ID>")
+                // required for enhanced button features
+                .setServerToken("<TOKEN>")
+                // required for implicit grant authentication
+                .setRedirectUri("<REDIRECT_URI>")
+                // optional: set sandbox as operating environment
+                .setEnvironment(SessionConfiguration.Environment.SANDBOX)
+                .build();
+        UberSdk.initialize(config);
+
         Timber.d("Map activity onCreate");
     }
 
