@@ -28,7 +28,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    RideRequestButton requestButton = (RideRequestButton) findViewById(R.id.request_button);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .setEnvironment(SessionConfiguration.Environment.SANDBOX)
                 .build();
         UberSdk.initialize(config);
+        RideRequestButton requestButton = findViewById(R.id.currentLoc);
 
         ServerTokenSession session = new ServerTokenSession(config);
         requestButton.setSession(session);
