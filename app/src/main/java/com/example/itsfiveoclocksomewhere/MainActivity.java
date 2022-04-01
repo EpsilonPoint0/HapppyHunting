@@ -3,6 +3,7 @@ package com.example.itsfiveoclocksomewhere;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,9 +19,9 @@ import com.uber.sdk.rides.client.SessionConfiguration;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
-    DBHelperUser DBUser;
-    Button ReadUserButton;
-    AppDatabase db;
+
+    public AppDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +38,19 @@ public class MainActivity extends AppCompatActivity {
                 .setEnvironment(SessionConfiguration.Environment.SANDBOX)
                 .build();
         UberSdk.initialize(config);
-        ReadUserButton = (Button)findViewById(R.id.button3);
-        ReadUserButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
-                DBUser = new DBHelperUser(MainActivity.this);
-                DBUser.getData(2);
-                Timber.d("Successfully inserted user");
-            }
-        });
         if(BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
         }
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "OurDB").allowMainThreadQueries().build();
+
+
+        //db = Room.databaseBuilder(getApplicationContext(),
+                //AppDatabase.class, "OurDB").allowMainThreadQueries().build();
+
+
+
+
+        //Toast.makeText(getApplicationContext(), test.toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override

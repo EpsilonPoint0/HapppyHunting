@@ -10,6 +10,20 @@ import java.util.List;
 
 public class DBMethods {
 
+    public UserDao ud;
+    public SpecialDao sd;
+    public BarDao bd;
+
+    public DBMethods(AppDatabase db){
+        ud = db.userDao();
+        sd = db.specialDao();
+        bd = db.barDao();
+        populateAllDBs(ud, sd, bd);
+        DBMethods.testWorks(db);
+
+    }
+
+
 
     public static void populateBar(BarDao db) {
         Bar one = new Bar(1, "Fourth Street Taproom & Kitchen", "1810 N 4th St, Columbus, OH 43201",
@@ -122,8 +136,8 @@ public class DBMethods {
     }
 
     public static void populateSpecials(SpecialDao db) {
-//        Special one = new Special(1, 0, 0, 1, 7,
-//                "16oz budweiser: $3|PBR tallboy: $3|16oz platform - haze jude: $4|paper tiger draft: $3|bomb special");
+       Special one = new Special(1, 0, 0, 1, 7, 2,
+                "16oz budweiser: $3|PBR tallboy: $3|16oz platform - haze jude: $4|paper tiger draft: $3|bomb special");
         Special two = new Special(1, 1, 15, 2, 2, 2,
                 "half off all drinks");
         Special three = new Special(2, 1, 15, 19, 3, 7,
@@ -170,7 +184,7 @@ public class DBMethods {
                 "DOMESTIC PITCHERS: $2 @ 12:00, $3 @ 1:00 $4 @ 2:00, $5 @ 3:00 $6 @ 4:00");
         Special twentyfour = new Special(23, 4, 18, 21, 5, 6,
                 "$20 bottomless mimosas|$4 irish breakfast shots");
-        db.insertAllSpecials(two, three, four, five, six, seven, eight, nine, ten, eleven, twelve,
+        db.insertAllSpecials(one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve,
                 thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twentyone,
                 twentytwo, twentythree, twentyfour);
     }
@@ -180,6 +194,13 @@ public class DBMethods {
         System.out.println(Arrays.toString(db.barDao().getAllBars().toArray()));
         System.out.println(Arrays.toString(db.userDao().getAllUsers().toArray()));
         System.out.println(Arrays.toString(db.specialDao().getAllSpecials().toArray()));
+
+
+    }
+
+    public static void populateAllDBs(UserDao u, SpecialDao s, BarDao b){
+        populateBar(b);
+
 
     }
 
