@@ -22,10 +22,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.itsfiveoclocksomewhere.DBMethods;
+import com.example.itsfiveoclocksomewhere.MainActivity;
 import com.example.itsfiveoclocksomewhere.R;
-import com.example.itsfiveoclocksomewhere.ui.login.LoginViewModel;
-import com.example.itsfiveoclocksomewhere.ui.login.LoginViewModelFactory;
 import com.example.itsfiveoclocksomewhere.databinding.ActivityLoginBinding;
+
+import org.apache.log4j.chainsaw.Main;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -70,16 +72,51 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
-                }
-                setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
-                finish();
+//                //checking if someone has used this username
+//                int exists = DBMethods.checkExistsAndFirstValue(MainActivity.conn,
+//                        "SELECT 1 FROM User WHERE Username = \'" + usernameEditText.getText().toString()
+//                                +"\' COLLATE NOCASE;");
+//
+//                //if there is a user with this username, checks to see if password was correct
+//                if (exists != 0) {
+//                    int match = DBMethods.checkExistsAndFirstValue(MainActivity.conn,
+//                            "SELECT 1 FROM User WHERE Username = \'" + usernameEditText.getText().toString()
+//                                    +"\' AND password = \'" + passwordEditText.getText().toString()
+//                            + "\' COLLATE NOCASE;");
+//
+//                    //if the user entered the correct password, welcomes them back
+//                    if (match != 0) {
+//                        updateUIWelcomeMessage(loginResult.getSuccess(), false);
+//                        setResult(Activity.RESULT_OK);
+//                        finish();  //Complete and destroy login activity once successful
+//
+//                    //if the user entered an incorrect password, displays error message
+//                    } else {
+//                        updateUIWrongPassword(loginResult.getSuccess());
+//                    }
+//
+//                 //if no user has that username, creates new account
+//                } else {
+//                    int UserId = DBMethods.getRows(MainActivity.conn, "User") + 1; //making user's new id
+//                    DBMethods.writeToDB(MainActivity.conn, "INSERT INTO User VALUES (" + UserId
+//                        + ", \'" + usernameEditText.getText().toString() +"\', "
+//                        + passwordEditText.getText().toString() + "null, null);");
+//                    updateUIWelcomeMessage(loginResult.getSuccess(), true);
+//                    setResult(Activity.RESULT_OK);
+//                    finish();  //Complete and destroy login activity once successful
+//                }
+
+                //TODO do we still need these?
+//                if (loginResult.getError() != null) {
+ //                   showLoginFailed(loginResult.getError());
+  //              }
+   //             if (loginResult.getSuccess() != null) {
+    //                updateUiWithUser(loginResult.getSuccess());
+     //           }
+
+
+
             }
         });
 
@@ -124,10 +161,22 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + LoginViewModel.Susername;
+    private void updateUIWelcomeMessage(LoggedInUserView model, boolean NewUser) {
+        String welcome ="";
+        if (NewUser) {
+            welcome = getString(R.string.welcome) + model.getDisplayName();
+        } else {
+            welcome = getString(R.string.returning) + model.getDisplayName();
+        }
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+    }
+
+    private void updateUIWrongPassword(LoggedInUserView model) {
+
+        Toast.makeText(getApplicationContext(), "Sorry, that password does not match our records." +
+                " Please Try Again", Toast.LENGTH_LONG).show();
+
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
