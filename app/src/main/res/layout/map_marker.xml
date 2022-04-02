@@ -37,7 +37,7 @@
             android:id="@+id/infoWindowButton"
             style="@style/Widget.AppCompat.ImageButton"
             android:layout_width="100dp"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:layout_gravity="center_horizontal"
             android:alpha="0.9"
             android:backgroundTint="#858585"

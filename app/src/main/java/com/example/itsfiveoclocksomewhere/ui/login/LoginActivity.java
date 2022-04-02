@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -24,10 +25,14 @@ import android.widget.Toast;
 
 import com.example.itsfiveoclocksomewhere.DBMethods;
 import com.example.itsfiveoclocksomewhere.MainActivity;
+import com.example.itsfiveoclocksomewhere.MapsActivity;
+import com.example.itsfiveoclocksomewhere.PostLogin;
 import com.example.itsfiveoclocksomewhere.R;
 import com.example.itsfiveoclocksomewhere.databinding.ActivityLoginBinding;
 
 import org.apache.log4j.chainsaw.Main;
+
+import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -151,14 +156,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        });
+//        loginButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadingProgressBar.setVisibility(View.VISIBLE);
+//                loginViewModel.login(usernameEditText.getText().toString(),
+//                        passwordEditText.getText().toString());
+//            }
+        //});
     }
 
     private void updateUIWelcomeMessage(LoggedInUserView model, boolean NewUser) {
@@ -181,5 +186,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    /** Called when the user touches the button */
+    public void sendMessagePostLogin(View view) {
+        Intent intent = new Intent(LoginActivity.this, PostLogin.class);
+        Timber.d("Button clicked");
+        startActivity(intent);
     }
 }
