@@ -200,8 +200,8 @@ public class DBMethods {
 
     public static void populateAllDBs(UserDao u, SpecialDao s, BarDao b){
         populateBar(b);
-
-
     }
+
+
 
 }

@@ -7,8 +7,10 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
+import com.example.itsfiveoclocksomewhere.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,7 +20,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.itsfiveoclocksomewhere.databinding.ActivityMapsBinding;
+/*import com.lyft.deeplink.RideTypeEnum;
+import com.lyft.lyftbutton.LyftButton;
+import com.lyft.lyftbutton.RideParams;
+import com.lyft.networking.ApiConfig;*/
 import com.uber.sdk.android.core.UberSdk;
 import com.uber.sdk.android.rides.RideParameters;
 import com.uber.sdk.android.rides.RideRequestButton;
@@ -36,7 +41,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    public AppDatabase db;
+    private AppDatabase db;
+    private List<Special> specialList;
+
+
+    /*class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
+        // "title" and "snippet".
+        private final View mWindow;
+
+        private final View mContents;
+
+        CustomInfoWindowAdapter(Context context) {
+            mWindow = getLayoutInflater().inflate(R.layout.map_marker, null);
+            mContents = getLayoutInflater().inflate(R.layout.map_marker, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            render(marker, mWindow);
+            return mWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            render(marker, mWindow);
+            return mContents;
+        }
+
+        private void render(Marker marker, View view) {
+
+        }
+    }*/
 
 
     @Override
@@ -94,9 +131,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         requestButton.setCallback(callback);
         requestButton.loadRideInformation();
 
+        /*ApiConfig apiConfig = new ApiConfig.Builder()
+                .setClientId("your_client_id")
+                .setClientToken("your_client_token")
+                .build();
+
+        LyftButton lyftButton = (LyftButton) findViewById(R.id.lyft_button);
+        lyftButton.setApiConfig(apiConfig);
+
+        RideParams.Builder rideParamsBuilder = new RideParams.Builder()
+                .setPickupLocation(37.7766048, -122.3943629)
+                .setDropoffLocation(37.759234, -122.4135125);
+        rideParamsBuilder.setRideTypeEnum(RideTypeEnum.STANDARD);
+
+        lyftButton.setRideParams(rideParamsBuilder.build());
+        lyftButton.load();*/
+
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "OurDB").allowMainThreadQueries().build();
 
+        DBMethods.populateSpecials(db.specialDao());
 
         Timber.d("Map activity onCreate");
     }
@@ -146,10 +200,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng columbus = getLocationFromAddress(MapsActivity.this, "111 W Northwood Ave Columbus Ohio");
 
         List<Bar> barList = db.barDao().getAllBars();
+        specialList = db.specialDao().getAllSpecials();
         List<Marker> markers= new ArrayList<Marker>();
         for (int i = 0; i < barList.size(); i++) {
+            String snippet = "Special: " + specialList.get(i).specialInfo + "\nStart Time: " + specialList.get(i).startTime + "\nEnd Time: " + specialList.get(i).endTime;
             LatLng mark = getLocationFromAddress(MapsActivity.this, barList.get(i).address);
-            markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name)));
+            markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name).snippet(snippet)));
         }
         markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -159,6 +215,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLngBounds bounds = builder.build();
         int padding = 0; // offset from edges of the map in pixels
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        //mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(this));
         googleMap.animateCamera(cu);
         Timber.d("Map activity onStart");
     }

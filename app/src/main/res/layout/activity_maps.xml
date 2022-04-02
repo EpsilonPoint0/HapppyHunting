@@ -26,6 +26,16 @@
         android:layout_marginBottom="0sp"
         uber:ub__style="black" />
 
+    <!--<com.lyft.lyftbutton.LyftButton
+        android:id="@+id/lyft_button"
+        android:layout_width="250sp"
+        android:layout_height="75sp"
+        android:layout_alignEnd="@id/map"
+        android:layout_alignRight="@id/map"
+        android:layout_alignBottom="@id/map"
+        android:layout_marginRight="0sp"
+        android:layout_marginBottom="75sp"
+         />-->
 
 
 </RelativeLayout>
