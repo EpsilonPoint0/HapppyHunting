@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -282,8 +283,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker m) {
 
+                if(m.isInfoWindowShown()){
+                    ((TextView) findViewById(R.id.textViewLink)).setMovementMethod(LinkMovementMethod.getInstance());
+                    ((TextView) findViewById(R.id.textViewLink)).setText(Html.fromHtml(getResources().getString(R.string.messagewithlink)));
+                }
+                System.out.println("marker clicked");
                 return false;
             }
+
         });
         googleMap.animateCamera(cu);
 
