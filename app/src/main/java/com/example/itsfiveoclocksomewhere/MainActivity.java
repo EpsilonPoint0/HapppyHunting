@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
+
         //db = Room.databaseBuilder(getApplicationContext(),
                 //AppDatabase.class, "OurDB").allowMainThreadQueries().build();
 

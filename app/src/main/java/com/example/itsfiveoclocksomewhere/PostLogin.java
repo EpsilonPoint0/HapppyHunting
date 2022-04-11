@@ -28,6 +28,7 @@ public class PostLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_login);
         requestPermissions();
+
     }
     /** Called when the user touches the button */
     public void sendMessageLogin(View view) {

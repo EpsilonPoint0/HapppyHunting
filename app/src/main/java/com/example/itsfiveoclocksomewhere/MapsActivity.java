@@ -174,6 +174,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Timber.d("Map activity onCreate");
 
         requestPermissions();
+
     }
 
     private void requestPermissions() {
@@ -259,7 +260,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         //LatLng columbus = new LatLng(40.005095,-83.027703);
 
-        LatLng columbus = getLocationFromAddress(MapsActivity.this, "111 W Northwood Ave Columbus Ohio");
+        //LatLng columbus = getLocationFromAddress(MapsActivity.this, "111 W Northwood Ave Columbus Ohio");
 
         List<Bar> barList = db.barDao().getAllBars();
         specialList = db.specialDao().getAllSpecials();
@@ -269,7 +270,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng mark = getLocationFromAddress(MapsActivity.this, barList.get(i).address);
             markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name).snippet(snippet)));
         }
-        markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
+        //markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {
             builder.include(marker.getPosition());

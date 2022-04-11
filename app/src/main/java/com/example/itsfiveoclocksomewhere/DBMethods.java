@@ -5,6 +5,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import java.lang.reflect.Array;
+import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.List;
 
@@ -202,6 +203,16 @@ public class DBMethods {
         populateBar(b);
     }
 
+    public static boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com");
+            //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 
 }
