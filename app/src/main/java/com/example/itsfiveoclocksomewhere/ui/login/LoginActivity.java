@@ -179,8 +179,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUIWrongPassword(LoggedInUserView model) {
 
-        Toast.makeText(getApplicationContext(), "Sorry, that password does not match our records." +
-                " Please Try Again", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.Sorry), Toast.LENGTH_LONG).show();
 
     }
 

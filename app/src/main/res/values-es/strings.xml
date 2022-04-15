@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Happy Hunting</string>
+    <string name="messagewithlink"><a href="https://www.uber.com/">Consigue un viaje con Uber</a></string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="go_to_map">Ir al mapa</string>
+    <string name="create_account">Crear cuenta o iniciar sesión</string>
+    <string name="welcome_to_happy_hunting_start_by_clicking_the_button_below_to_create_your_account">¡Bienvenidos a Happy Hunting! Comience haciendo clic en el botón de abajo para crear su cuenta.</string>
+    <string name="button">Botón</string>
+    <string name="login_failed">Error de inicio de sesión</string>
+    <string name="invalid_password">La contraseña debe tener >5 caracteres</string>
+    <string name="invalid_username">No es un nombre de usuario válido</string>
+    <string name="returning">Bienvenido de nuevo</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="action_sign_in">Inicie sesión o regístrese</string>
+    <string name="prompt_password">La contraseña</string>
+    <string name="prompt_email">El correo electrónico</string>
+    <string name ="Sorry">Lo sentimos, esa contraseña no coincide con nuestros registros.
+                Intentar otra vez</string>
+    <string name="Closed">Cerrada</string>
+</resources>

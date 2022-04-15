@@ -25,7 +25,6 @@ public class DBMethods {
     }
 
 
-
     public static void populateBar(BarDao db) {
         Bar one = new Bar(1, "Fourth Street Taproom & Kitchen", "1810 N 4th St, Columbus, OH 43201",
                 "Closed", "3PM - 2AM", "3PM - 2AM",
