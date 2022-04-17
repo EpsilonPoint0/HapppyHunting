@@ -57,7 +57,7 @@ public class PostLogin extends AppCompatActivity {
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        Toast.makeText(PostLogin.this, "All the permissions are granted..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PostLogin.this, getString(R.string.permissions), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -71,7 +71,7 @@ public class PostLogin extends AppCompatActivity {
                     @Override
                     public void onError(DexterError error) {
                         // we are displaying a toast message for error message.
-                        Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
                     }
                 })
                 // below line is use to run the permissions

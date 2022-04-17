@@ -29,10 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-/*import com.lyft.deeplink.RideTypeEnum;
-import com.lyft.lyftbutton.LyftButton;
-import com.lyft.lyftbutton.RideParams;
-import com.lyft.networking.ApiConfig;*/
+
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -40,6 +37,7 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.uber.sdk.android.core.UberButton;
 import com.uber.sdk.android.core.UberSdk;
 import com.uber.sdk.android.rides.RideParameters;
 import com.uber.sdk.android.rides.RideRequestButton;
@@ -123,7 +121,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .build();
         UberSdk.initialize(config);
         RideRequestButton requestButton = findViewById(R.id.currentLoc);
-
+        UberButton button = (UberButton) requestButton.getChildAt(0);
+        button.setText(getString((R.string.Uber)));
         ServerTokenSession session = new ServerTokenSession(config);
         RideRequestButtonCallback callback = new RideRequestButtonCallback() {
 
@@ -192,7 +191,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        Toast.makeText(MapsActivity.this, "All the permissions are granted..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MapsActivity.this, getString(R.string.permissions), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -206,7 +205,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onError(DexterError error) {
                 // we are displaying a toast message for error message.
-                Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
             }
         })
                 // below line is use to run the permissions
@@ -266,7 +265,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         specialList = db.specialDao().getAllSpecials();
         List<Marker> markers = new ArrayList<Marker>();
         for (int i = 0; i < barList.size(); i++) {
-            String snippet = "Special: " + specialList.get(i).specialInfo + "\nStart Time: " + specialList.get(i).startTime + "\nEnd Time: " + specialList.get(i).endTime;
+            String snippet = getString(R.string.special) + specialList.get(i).specialInfo + "\n"+getString(R.string.start) + specialList.get(i).startTime + "\n"+getString(R.string.end) + specialList.get(i).endTime;
             LatLng mark = getLocationFromAddress(MapsActivity.this, barList.get(i).address);
             markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name).snippet(snippet)));
         }

@@ -22,4 +22,10 @@
     <string name ="Sorry">Sorry, that password does not match our records.
                 Please Try Again</string>
     <string name="Closed">Closed</string>
+    <string name= "permissions">"All the permissions are granted.."</string>
+    <string name="special">"Special: "</string>
+    <string name="start">"Start Time: "</string>
+    <string name="end">"End Time: "</string>
+    <string name="error">Error Occurred</string>
+    <string name="Uber">Get a ride using Uber</string>
 </resources>

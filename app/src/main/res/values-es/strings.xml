@@ -19,4 +19,10 @@
     <string name ="Sorry">Lo sentimos, esa contraseña no coincide con nuestros registros.
                 Intentar otra vez</string>
     <string name="Closed">Cerrada</string>
+    <string name= "permissions">"Todos los permisos están concedidos.."</string>
+    <string name="special">"Especiales: "</string>
+    <string name="start">"Hora de inicio: "</string>
+    <string name="end">"Hora de finalización: "</string>
+    <string name="error">Hubo un error</string>
+    <string name="Uber">Consigue un viaje con Uber</string>
 </resources>
