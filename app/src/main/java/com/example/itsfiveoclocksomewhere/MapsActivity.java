@@ -58,6 +58,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private AppDatabase db;
     private List<Special> specialList;
+    private List<Special> specials;
+    private List<Bar> bars;
     TextView textView;
 
 
@@ -168,7 +170,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "OurDB").allowMainThreadQueries().build();
 
-        DBMethods.populateSpecials(db.specialDao());
+        specials = DBMethods.populateSpecials(db.specialDao());
+        bars = DBMethods.populateBar(db.barDao());
 
         Timber.d("Map activity onCreate");
 
@@ -223,29 +226,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
 
-    public LatLng getLocationFromAddress(Context context, String strAddress) {
+    private LatLngBounds createBounds(){
 
-        Geocoder coder = new Geocoder(context);
-        List<Address> address;
-        LatLng p1 = null;
+        LatLng columbus = DBMethods.getLocationFromAddress(MapsActivity.this, "111 W Northwood Ave Columbus Ohio");
+        List<Bar> barList = db.barDao().getAllBars();
+        System.out.println(barList);
+        specialList = db.specialDao().getAllSpecials();
+        List<Marker> markers = new ArrayList<Marker>();
+        for (int i = 0; i < barList.size(); i++) {
+            String snippet = getString(R.string.special) + specialList.get(i).specialInfo + "\n"+getString(R.string.start) + specialList.get(i).startTime + "\n"+getString(R.string.end) + specialList.get(i).endTime;
+            LatLng mark = DBMethods.getLocationFromAddress(MapsActivity.this, barList.get(i).address);
+            //String snippet = getString(R.string.special) + specials.get(i).specialInfo + "\n"+getString(R.string.start) + specials.get(i).startTime + "\n"+getString(R.string.end) + specials.get(i).endTime;
+            //LatLng mark = DBMethods.getLocationFromAddress(MapsActivity.this, barList.get(i).address);
+            markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name).snippet(snippet)));
+        }
+        markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Marker marker : markers) {
+            builder.include(marker.getPosition());
 
-        try {
-            address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
-                return null;
-            }
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            p1 = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } catch (Exception ex) {
-
-            ex.printStackTrace();
         }
 
-        return p1;
+        LatLngBounds bounds = builder.build();
+
+        return bounds;
     }
 
     @SuppressLint("MissingPermission")
@@ -259,23 +263,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         //LatLng columbus = new LatLng(40.005095,-83.027703);
 
-        //LatLng columbus = getLocationFromAddress(MapsActivity.this, "111 W Northwood Ave Columbus Ohio");
+        /*LatLng columbus = DBMethods.getLocationFromAddress(MapsActivity.this, "111 W Northwood Ave Columbus Ohio");
 
         List<Bar> barList = db.barDao().getAllBars();
+        System.out.println(barList);
         specialList = db.specialDao().getAllSpecials();
         List<Marker> markers = new ArrayList<Marker>();
         for (int i = 0; i < barList.size(); i++) {
             String snippet = getString(R.string.special) + specialList.get(i).specialInfo + "\n"+getString(R.string.start) + specialList.get(i).startTime + "\n"+getString(R.string.end) + specialList.get(i).endTime;
-            LatLng mark = getLocationFromAddress(MapsActivity.this, barList.get(i).address);
+            LatLng mark = DBMethods.getLocationFromAddress(MapsActivity.this, barList.get(i).address);
             markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name).snippet(snippet)));
         }
-        //markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
+        markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {
             builder.include(marker.getPosition());
 
         }
-        LatLngBounds bounds = builder.build();
+        LatLngBounds bounds = builder.build();*/
+        LatLngBounds bounds = createBounds();
+
         int padding = 0; // offset from edges of the map in pixels
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(this));

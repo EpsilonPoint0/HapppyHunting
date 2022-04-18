@@ -9,15 +9,13 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class UserCreationTest {
     @Test
-    public void LoggedInUserViewTest() {
+    public void DBMethodsTest() {
 
-        LoggedInUserView view = new LoggedInUserView("display");
-
-        String dn = view.getDisplayName();
-
-        assertEquals("display", dn);
+        User newUser = new User(6, "Username", "password", "uberId", "lyftID");
+        User user = new User(6, "Username", "password", "uberId", "lyftID");
+        assertEquals(user, newUser);
 
     }
 }
