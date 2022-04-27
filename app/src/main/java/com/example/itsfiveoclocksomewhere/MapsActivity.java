@@ -233,6 +233,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         System.out.println(barList);
         specialList = db.specialDao().getAllSpecials();
         List<Marker> markers = new ArrayList<Marker>();
+        markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
         for (int i = 0; i < barList.size(); i++) {
             String snippet = getString(R.string.special) + specialList.get(i).specialInfo + "\n"+getString(R.string.start) + specialList.get(i).startTime + "\n"+getString(R.string.end) + specialList.get(i).endTime;
             LatLng mark = DBMethods.getLocationFromAddress(MapsActivity.this, barList.get(i).address);
@@ -240,7 +241,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //LatLng mark = DBMethods.getLocationFromAddress(MapsActivity.this, barList.get(i).address);
             markers.add(mMap.addMarker(new MarkerOptions().position(mark).title(barList.get(i).name).snippet(snippet)));
         }
-        markers.add(mMap.addMarker(new MarkerOptions().position(columbus).title("Marker in Columbus")));
+
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         for (Marker marker : markers) {
             builder.include(marker.getPosition());
